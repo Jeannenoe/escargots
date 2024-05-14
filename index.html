@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <link rel="stylesheet" href="css/leaflet.css">
+        <link rel="stylesheet" href="css/qgis2web.css"><link rel="stylesheet" href="css/fontawesome-all.min.css">
+        <link rel="stylesheet" href="css/MarkerCluster.css">
+        <link rel="stylesheet" href="css/MarkerCluster.Default.css">
+        <link rel="stylesheet" href="css/leaflet-measure.css">
+        <style>
+        #map {
+            width: 928px;
+            height: 835px;
+        }
+        </style>
+        <title></title>
+    </head>
+    <body>
+        <div id="map">
+        </div>
+        <script src="js/qgis2web_expressions.js"></script>
+        <script src="js/leaflet.js"></script>
+        <script src="js/leaflet.rotatedMarker.js"></script>
+        <script src="js/leaflet.pattern.js"></script>
+        <script src="js/leaflet-hash.js"></script>
+        <script src="js/Autolinker.min.js"></script>
+        <script src="js/rbush.min.js"></script>
+        <script src="js/labelgun.min.js"></script>
+        <script src="js/labels.js"></script>
+        <script src="js/leaflet-measure.js"></script>
+        <script src="js/leaflet.markercluster.js"></script>
+        <script src="data/escargots_0.js"></script>
+        <script src="data/Lunch_Walk1tracks_2.js"></script>
+        <script src="data/adresse_3.js"></script>
+        <script>
+        var map = L.map('map', {
+            zoomControl:true, maxZoom:28, minZoom:1
+        }).fitBounds([[43.90601678174743,4.882815785120839],[43.90642623798403,4.8834422430513]]);
+        var hash = new L.Hash(map);
+        map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
+        var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
+        var measureControl = new L.Control.Measure({
+            position: 'topleft',
+            primaryLengthUnit: 'feet',
+            secondaryLengthUnit: 'miles',
+            primaryAreaUnit: 'sqfeet',
+            secondaryAreaUnit: 'sqmiles'
+        });
+        measureControl.addTo(map);
+        document.getElementsByClassName('leaflet-control-measure-toggle')[0]
+        .innerHTML = '';
+        document.getElementsByClassName('leaflet-control-measure-toggle')[0]
+        .className += ' fas fa-ruler';
+        var bounds_group = new L.featureGroup([]);
+        function setBounds() {
+        }
+        function pop_escargots_0(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <th scope="row">nom espèce</th>\
+                        <td>' + (feature.properties['nom espèce'] !== null ? autolinker.link(feature.properties['nom espèce'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">nombre</th>\
+                        <td>' + (feature.properties['nombre'] !== null ? autolinker.link(feature.properties['nombre'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_escargots_0_0() {
+            return {
+                pane: 'pane_escargots_0',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(231,113,72,1.0)',
+                interactive: true,
+            }
+        }
+        map.createPane('pane_escargots_0');
+        map.getPane('pane_escargots_0').style.zIndex = 400;
+        map.getPane('pane_escargots_0').style['mix-blend-mode'] = 'normal';
+        var layer_escargots_0 = new L.geoJson(json_escargots_0, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_escargots_0',
+            layerName: 'layer_escargots_0',
+            pane: 'pane_escargots_0',
+            onEachFeature: pop_escargots_0,
+            style: style_escargots_0_0,
+        });
+        bounds_group.addLayer(layer_escargots_0);
+        map.addLayer(layer_escargots_0);
+        map.createPane('pane_lycee_2022_georeftif_1');
+        map.getPane('pane_lycee_2022_georeftif_1').style.zIndex = 401;
+        var img_lycee_2022_georeftif_1 = 'data/lycee_2022_georeftif_1.png';
+        var img_bounds_lycee_2022_georeftif_1 = [[43.90502195378139,4.867011490363534],[43.91662841322215,4.887307481622088]];
+        var layer_lycee_2022_georeftif_1 = new L.imageOverlay(img_lycee_2022_georeftif_1,
+                                              img_bounds_lycee_2022_georeftif_1,
+                                              {pane: 'pane_lycee_2022_georeftif_1'});
+        bounds_group.addLayer(layer_lycee_2022_georeftif_1);
+        map.addLayer(layer_lycee_2022_georeftif_1);
+        function pop_Lunch_Walk1tracks_2(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2"><strong>name</strong><br />' + (feature.properties['name'] !== null ? autolinker.link(feature.properties['name'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['cmt'] !== null ? autolinker.link(feature.properties['cmt'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['desc'] !== null ? autolinker.link(feature.properties['desc'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['src'] !== null ? autolinker.link(feature.properties['src'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['link1_href'] !== null ? autolinker.link(feature.properties['link1_href'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['link1_text'] !== null ? autolinker.link(feature.properties['link1_text'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['link1_type'] !== null ? autolinker.link(feature.properties['link1_type'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['link2_href'] !== null ? autolinker.link(feature.properties['link2_href'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['link2_text'] !== null ? autolinker.link(feature.properties['link2_text'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['link2_type'] !== null ? autolinker.link(feature.properties['link2_type'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['number'] !== null ? autolinker.link(feature.properties['number'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['type'] !== null ? autolinker.link(feature.properties['type'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_Lunch_Walk1tracks_2_0() {
+            return {
+                pane: 'pane_Lunch_Walk1tracks_2',
+                opacity: 1,
+                color: 'rgba(219,30,42,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 3.0,
+                fillOpacity: 0,
+                interactive: true,
+            }
+        }
+        map.createPane('pane_Lunch_Walk1tracks_2');
+        map.getPane('pane_Lunch_Walk1tracks_2').style.zIndex = 402;
+        map.getPane('pane_Lunch_Walk1tracks_2').style['mix-blend-mode'] = 'normal';
+        var layer_Lunch_Walk1tracks_2 = new L.geoJson(json_Lunch_Walk1tracks_2, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_Lunch_Walk1tracks_2',
+            layerName: 'layer_Lunch_Walk1tracks_2',
+            pane: 'pane_Lunch_Walk1tracks_2',
+            onEachFeature: pop_Lunch_Walk1tracks_2,
+            style: style_Lunch_Walk1tracks_2_0,
+        });
+        bounds_group.addLayer(layer_Lunch_Walk1tracks_2);
+        map.addLayer(layer_Lunch_Walk1tracks_2);
+        function pop_adresse_3(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['latitude'] !== null ? autolinker.link(feature.properties['latitude'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['longitude'] !== null ? autolinker.link(feature.properties['longitude'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>qrcode</strong><br />' + (feature.properties['qrcode'] !== null ? '<img src="images/' + String(feature.properties['qrcode']).replace(/[\\\/:]/g, '_').trim() + '">' : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_adresse_3_0() {
+            return {
+                pane: 'pane_adresse_3',
+                interactive: true,
+            }
+        }
+        map.createPane('pane_adresse_3');
+        map.getPane('pane_adresse_3').style.zIndex = 403;
+        map.getPane('pane_adresse_3').style['mix-blend-mode'] = 'normal';
+        var layer_adresse_3 = new L.geoJson(json_adresse_3, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_adresse_3',
+            layerName: 'layer_adresse_3',
+            pane: 'pane_adresse_3',
+            onEachFeature: pop_adresse_3,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.circleMarker(latlng, style_adresse_3_0(feature));
+            },
+        });
+        var cluster_adresse_3 = new L.MarkerClusterGroup({showCoverageOnHover: false,
+            spiderfyDistanceMultiplier: 2});
+        cluster_adresse_3.addLayer(layer_adresse_3);
+
+        bounds_group.addLayer(layer_adresse_3);
+        cluster_adresse_3.addTo(map);
+        setBounds();
+        L.ImageOverlay.include({
+            getBounds: function () {
+                return this._bounds;
+            }
+        });
+        </script>
+    </body>
+</html>

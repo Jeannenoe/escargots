@@ -1,0 +1,1 @@
+var json_adresse_3 = {"type":"FeatureCollection","name":"adresse_3","crs":{"type":"name","properties":{"name":"urn:ogc:def:crs:OGC:1.3:CRS84"}},"features":[{"type":"Feature","properties":{"latitude":43.9062,"longitude":4.88306,"qrcode":"U:\\Downloads\\qr-code.pdf"},"geometry":{"type":"Point","coordinates":[4.883061417188249,43.90620764360132]}}]}
